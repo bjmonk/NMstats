@@ -9,12 +9,6 @@ rel_hist(x, ...)
 \arguments{
 \item{x}{a vector of values for the relative histogram}
 
-\item{main}{Defaults main title to "Relative Histogram" \emph{(internal parameter)}}
-
-\item{ylab}{Defaults the label for the y-axis to "Relative Frequencies" \emph{(internal parameter)}}
-
-\item{ybreaks}{Adjusts y-axis breaks. \emph{(internal parameter)}}
-
 \item{...}{further arguments and graphical parameters available in the \code{hist} function.}
 }
 \description{
