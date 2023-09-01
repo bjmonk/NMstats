@@ -6,10 +6,6 @@
 #' @usage rel_hist(x, ...)
 #' @param x   a vector of values for the relative histogram
 #' @param ... further arguments and graphical parameters available in the `hist` function.
-#' @param main Defaults main title to "Relative Histogram" \emph{(internal parameter)}
-#' @param ylab Defaults the label for the y-axis to "Relative Frequencies" \emph{(internal parameter)}
-#' @param ybreaks Adjusts y-axis breaks. \emph{(internal parameter)}
-#'
 #'
 #'@importFrom graphics hist
 #'
