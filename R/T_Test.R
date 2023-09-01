@@ -20,6 +20,8 @@
 #'@importFrom stats pt
 #'
 #' @note This function is appropriate when the population standard deviation is not known. If the population standard deviation is known, consider using the \code{\link{Z_Test}} function, based on the normal distribution.
+#'
+#' @export
 
 
 T_Test <- function(xbar,

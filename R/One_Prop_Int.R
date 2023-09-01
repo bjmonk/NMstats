@@ -18,7 +18,7 @@
 #' You can access these values with expressions like \code{res$sprop}, \code{res$critval}, \code{res$Lbound}, and \code{res$Ubound} where \code{res} is the result of the function.
 #'
 #' @importFrom stats qnorm
-#'
+#' @export
 
 
 One_Prop_Int <- function(x, n, alpha = 0.05)

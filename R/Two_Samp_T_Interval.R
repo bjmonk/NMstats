@@ -21,8 +21,9 @@
 #'     }
 #' You can access these values with expressions like \code{res$critval}, \code{res$Lbound}, and \code{res$Ubound} where \code{res} is the result of the function.
 #'
-#'@importFrom stats qt
+#' @importFrom stats qt
 #'
+#' @export
 
 Two_Samp_T_Interval <- function(xbar1, s1, n1, xbar2, s2, n2, alpha)
 {

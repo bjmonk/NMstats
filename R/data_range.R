@@ -5,6 +5,7 @@
 #' @param x   a vector or values
 #'
 #' @return  The function returns the range of a data set, defined as the minimum subtracted from the maximum.
+#' @export
 
 data_range <-
   function(x)

@@ -23,6 +23,7 @@
 #'
 #' @importFrom stats qnorm
 #'
+#' @export
 
 
 Two_Prop_Int <- function(x1, n1, x2, n2, alpha)

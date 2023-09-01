@@ -21,7 +21,7 @@
 #'
 #'@importFrom stats pt
 #'
-#'
+#' @export
 
 Two_Samp_T_Test <-function(xbar1, s1, n1, xbar2, s2, n2, alt = "two", mu0 = 0)
 {

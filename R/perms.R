@@ -11,7 +11,7 @@
 #' @return
 #' An integer value representing the number of permutations of `r` items chosen from `n`.
 #'
-#'
+#' @export
 
 perms <- function(n, r) {
   if (r > n) {

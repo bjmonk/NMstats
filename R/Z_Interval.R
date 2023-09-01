@@ -20,6 +20,8 @@
 #' @importFrom stats qnorm
 #'
 #' @note This function assumes the population standard deviation is known. If the population standard deviation is not known, consider using the \code{\link{T_Interval}} function, based on the Student's t-distribution.
+#'
+#' @export
 
 
 Z_Interval <- function(xbar, n, sigma, alpha = 0.05) {

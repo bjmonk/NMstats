@@ -19,6 +19,7 @@
 #'
 #' @importFrom stats pnorm
 #'
+#' @export
 
 
 

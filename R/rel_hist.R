@@ -7,8 +7,9 @@
 #' @param x   a vector of values for the relative histogram
 #' @param ... further arguments and graphical parameters available in the `hist` function.
 #'
-#'@importFrom graphics hist
+#' @importFrom graphics hist
 #'
+#' @export
 
 rel_hist <- function(x,
                           main = "Relative Histogram",

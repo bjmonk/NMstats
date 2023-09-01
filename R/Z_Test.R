@@ -20,6 +20,8 @@
 #'@importFrom stats pnorm
 #'
 #' @note This function is appropriate when the population standard deviation is known. If the population standard deviation is not known, consider using the \code{\link{T_Test}} function, based on the Student's t-distribution.
+#'
+#' @export
 
 Z_Test <-
   function(xbar,

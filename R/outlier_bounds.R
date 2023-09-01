@@ -15,8 +15,10 @@
 
 #' You can access these values with expressions like \code{res$Lower.bound} and \code{res$Upper.bound} where \code{res} is the result of the function.
 #'
-#'@importFrom graphics axis
-#'@importFrom stats quantile
+#' @importFrom graphics axis
+#' @importFrom stats quantile
+#'
+#' @export
 
 outlier_bounds <-
   function(x)
