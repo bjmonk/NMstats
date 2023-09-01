@@ -1,6 +1,6 @@
 Package: NMstats
 Title: Functions aligned with Navidi/Monk Elementary Statistics
-Version: 0.0.1.0000
+Version: 1.0.0
 Authors@R: 
     person("Barry", "Monk", , "barry.j.monk@gmail.com", role = c("aut", "cre"))
 Description: This package is comprised of functions to accompanythe Navidi/Monk Elementary and Essential Statistics texts.
