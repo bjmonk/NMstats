@@ -11,7 +11,7 @@
 #' @return
 #' An integer value representing the number of combinations of `r` items chosen from `n`.
 #'
-#'@export
+#' @export
 
 combs <- function(n, r) {
   if (r > n) {
