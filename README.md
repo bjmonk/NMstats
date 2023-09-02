@@ -26,6 +26,12 @@ devtools::install_url("https://barrymonk.com/NMstats_1.0.0.tar.gz")
 NMstats includes the following functions:
 
 
+### `var.p`
+The `var.p` function calculates the population variance of a data set.
+
+### `sd.p`
+The `sd.p` function calculates the population standard deviation of a data set.
+
 ### `combs`
 The `combs` function calculates the number of ways to choose `r` items from a total of `n` items without replacement and where the order does not matter.
 
