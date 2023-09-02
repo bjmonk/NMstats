@@ -13,5 +13,5 @@ sd.p(x)
 The population standard deviation of \code{x}.
 }
 \description{
-The function \code{sd.p} calculates the population variance of a data set \code{x}.
+The function \code{sd.p} calculates the population standard deviation of a data set \code{x}.
 }
