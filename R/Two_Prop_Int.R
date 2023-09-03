@@ -26,7 +26,7 @@
 #' @export
 
 
-Two_Prop_Int <- function(x1, n1, x2, n2, alpha)
+Two_Prop_Int <- function(x1, n1, x2, n2, alpha = 0.05)
 {
   # Calculate confidence level
   conf_lev <- (1 - alpha) * 100

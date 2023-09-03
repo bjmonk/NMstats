@@ -25,7 +25,7 @@
 #'
 #' @export
 
-Two_Samp_T_Interval <- function(xbar1, s1, n1, xbar2, s2, n2, alpha)
+Two_Samp_T_Interval <- function(xbar1, s1, n1, xbar2, s2, n2, alpha = 0.05)
 {
   # Calculate confidence level
   conf_lev <- (1 - alpha) * 100
