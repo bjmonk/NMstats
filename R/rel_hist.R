@@ -37,4 +37,10 @@ rel_hist <- function(x,
 
   # Add y-axis with specified tick marks
   axis(side = 2, at = ybreaks, labels = round(ybreaks, 3))
+
+  # Return the breaks, counts, and mids as a named list for further use
+  result <- list(breaks = h$breaks, counts = h$counts, mids = h$mids)
+
+  return(invisible(result))
+
 }
