@@ -4,7 +4,7 @@
 \alias{Two_Samp_T_Interval}
 \title{Confidence Interval for the Difference Between Two Means: Independent Samples}
 \usage{
-Two_Samp_T_Interval(xbar1, s1, n1, xbar2, s2, n2, alpha)
+Two_Samp_T_Interval(xbar1, s1, n1, xbar2, s2, n2, alpha = 0.05)
 }
 \arguments{
 \item{xbar1}{The mean of Sample 1.}

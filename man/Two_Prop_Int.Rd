@@ -4,7 +4,7 @@
 \alias{Two_Prop_Int}
 \title{Confidence Interval for the Difference Between Two Proportions}
 \usage{
-Two_Prop_Int(x1, n1, x2, n2, alpha)
+Two_Prop_Int(x1, n1, x2, n2, alpha = 0.05)
 }
 \arguments{
 \item{x1}{The number of individuals of interest in Sample 1.}
