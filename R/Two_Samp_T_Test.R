@@ -47,7 +47,7 @@ Two_Samp_T_Test <-function(xbar1, s1, n1, xbar2, s2, n2, alt = "two", mu0 = 0)
 
   # Print the results in a user-friendly manner
   cat(
-    "\nNumber of Degrees of Freedom:",
+    "Number of Degrees of Freedom:",
     round(df, 4),
     "\nTest Statistic: t =",
     round(t, 4),

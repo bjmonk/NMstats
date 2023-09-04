@@ -51,7 +51,7 @@ One_Prop_Test <- function(x, n, p0, alt = "two")
   }
 
   # Print the results in a user-friendly manner
-  cat("\nSample Proportion:", round(phat, 4),
+  cat("Sample Proportion:", round(phat, 4),
       "\nTest Statistic: z =", round(z, 4),
       "\nP-Value:", round(p_val,4), "\n")
 

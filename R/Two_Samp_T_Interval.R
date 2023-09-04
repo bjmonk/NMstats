@@ -49,7 +49,7 @@ Two_Samp_T_Interval <- function(xbar1, s1, n1, xbar2, s2, n2, alpha = 0.05)
 
   # Print the results in a user-friendly manner
   cat(
-    "\nConfidence Level:",
+    "Confidence Level:",
     round(conf_lev, 4), "%",
     "\nMargin of Error:",
     round(margin_error, 4),

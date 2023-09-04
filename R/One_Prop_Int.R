@@ -41,7 +41,7 @@ One_Prop_Int <- function(x, n, alpha = 0.05)
 
   # Print the results in a user-friendly manner
   cat(
-    "\nConfidence Level:",
+    "Confidence Level:",
     round(conf_lev, 4), "%",
     "\nMargin of Error:",
     round(margin_error, 4),
