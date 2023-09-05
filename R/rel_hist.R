@@ -7,15 +7,6 @@
 #' @param x   a vector of values for the relative histogram
 #' @param ... further arguments and graphical parameters available in the `hist` function.
 #'
-#' @return  The function returns, invisibly, a list containing:
-#' \itemize{
-#'       \item \code{breaks}: A vector containing the cell boundaries.
-#'       \item \code{counts}: A vector containing the relative frequencies for each class.
-#'       \item \code{mids}: A vector containing the cell midpoints
-#'     }
-#' You can access these values with expressions like \code{res$breaks}, \code{res$counts}, and \code{res$mids} where \code{res} is the result of the function.
-#'
-#'
 #' @importFrom graphics hist
 #'
 #' @export

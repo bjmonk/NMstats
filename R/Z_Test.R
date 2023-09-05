@@ -55,9 +55,9 @@ Z_Test <-
     # Print the results in a user-friendly manner
     cat(
        "Test Statistic: z =",
-      round(z, 4),
+      round(z, 5),
       "\nP-Value:",
-      round(p_val, 4),
+      round(p_val, 5),
       "\n"
     )
 

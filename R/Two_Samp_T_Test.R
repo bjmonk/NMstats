@@ -48,11 +48,11 @@ Two_Samp_T_Test <-function(xbar1, s1, n1, xbar2, s2, n2, alt = "two", mu0 = 0)
   # Print the results in a user-friendly manner
   cat(
     "Number of Degrees of Freedom:",
-    round(df, 4),
+    round(df, 5),
     "\nTest Statistic: t =",
-    round(t, 4),
+    round(t, 5),
     "\nP-Value:",
-    round(p_val, 4),
+    round(p_val, 5),
     "\n"
   )
 
