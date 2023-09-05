@@ -18,7 +18,7 @@ or with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_url("https://barrymonk.com/NMstats_1.0.0.tar.gz")
+devtools::install_url("https://barrymonk.com/NMstats_1.0.2.tar.gz")
 ```
 
 ## Usage
