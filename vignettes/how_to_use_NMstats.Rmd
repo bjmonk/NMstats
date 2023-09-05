@@ -1,0 +1,763 @@
+---
+title: "How to Use NMstats"
+author: Barry Monk
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to Use NMstats}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  tidy.opts = list(width.cutoff = 72), 
+  tidy = TRUE, comment = "##", collapse = TRUE
+)
+```
+
+```{css, echo = FALSE}
+h2 {color: #4169E1;
+font-size: 1.6em;}
+.output {
+border: 1px solid black;
+font-weight: bold;}
+.xname {
+color: #663399;
+font-size=1.1em
+}
+
+```
+
+<!-- INTRODUCTION -->
+
+**NMstats** is an R package that contains functions aligned to the Navidi/Monk Elementary & Essential Statistics textbooks. This vignette describes the functions available along with special considerations and examples.
+
+<br>
+
+<span class="xname">Call the NMstats package:</span>
+```{r setup}
+library(NMstats)
+```
+
+<!-- DESCRIPTION OF COMBS FUNCTION -->
+## combs
+
+The `combs` function calculates the number of ways to choose `r` items from a total of `n` without replacement and where order does not matter.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `combs(n, r)` where `n` is the total number of items and `r` is the number of items to choose. 
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function returns an integer value that represents the number of combinations of `r` items chosen from `n`
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Count the number of combinations of 4 items chosen from 10 
+</span>
+
+```{r class.source="output"}
+combs(10, 4)
+```
+
+<span class="xname">
+Computation of binomial probability where *n* = 15, *p* = 0.25, and *x* = 6.
+</span>
+
+```{r class.source="output"}
+n <- 15; p <- 0.25; x <-6
+prob_value <- combs(n, x) * p^x * (1 - p)^(n - x)
+print(prob_value)
+```
+
+<!-- DESCRIPTION OF PERMS FUNCTION -->
+## perms
+
+The `perms` function calculates the number of ways to choose `r` items from a total of `n` without replacement and where order matter.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `perms(n, r)` where `n` is the total number of items and `r` is the number of items to choose. 
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function returns an integer value that represents the number of permutations of `r` items chosen from `n`
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+The number of permutations of 7 items chosen from 12.
+</span>
+
+```{r class.source="output"}
+perms(12, 7)
+```
+
+<span class="xname">
+Computation of the probability of guessing a 3-digit number (allowing zeros) if none of the digits are repeated.
+</span>
+
+```{r class.source="output"}
+num_outcomes <- perms(10, 3)
+prob_value <- 1/num_outcomes
+print(prob_value)
+```
+
+<!-- DESCRIPTION OF OUTLIER_BOUNDS FUNCTION -->
+## outlier_bounds
+
+The `outlier_bounds` function computes the lower and upper outlier boundaries using the IQR method.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `outlier_bounds(data)` where `data` is a data set. 
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function will print the lower and upper outlier bounds. Variables `Lower.bound` and `Upper.bound` are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Print the lower and upper outlier bounds of a data set
+</span>
+```{r class.source="output"}
+data <- c(14, 9, 3, 22, 8, 13, 6)
+outlier_bounds(data)
+```
+<span class="xname">
+Calling lower and upper outlier bounds after <code>result <- outlier_bounds(data)</code>
+</span>
+```{r include = FALSE}
+result <- outlier_bounds(data)
+```
+
+```{r class.source="output"}
+result$Lower.bound
+result$Upper.bound
+```
+
+
+
+<!-- DESCRIPTION OF DATA_RANGE FUNCTION -->
+## data_range
+
+The `data_range` function computes the range of a data set.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `data_range(data)` where `data` is a data set. 
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function returns the range of a data set, defined as the minimum subtracted from the maximum.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Return the range of a data set
+</span>
+
+```{r class.source="output"}
+data <- c(24, -67, 15, 89, -34, 51, -42, 76)
+data_range(data)
+```
+
+<span class="xname">
+Comparing the ranges of two data sets
+</span>
+```{r class.source="output"}
+data_1 <- c(12.4, -5.3, 8.7, 19.1, 2.9)
+data_2 <- c(-23.1, 7.5, 14.2, 3.8, -6.7)
+data_range(data_1)
+data_range(data_2)
+```
+
+<!-- DESCRIPTION OF REL_HIST FUNCTION -->
+## rel_hist
+
+The `rel_hist` function constructs a relative histogram for a data set.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `rel_hist(data, ...)` where `data` is a data set and `...` refers to further arguments and options available in the `hist` command.. 
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function constructs a relative histogram. Variables `breaks`, `counts`, and `mids` are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Generate random data and construct relative histogram
+</span>
+
+```{r class.source="output", fig.width=4}
+data <- sample(1:15, 100, replace = TRUE)
+rel_hist(data)
+```
+
+<!-- DESCRIPTION OF var.p FUNCTION -->
+## var.p
+
+The `var.p` function calculates the population variance of a data set.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `var.p(data)` where `data` is a data set.
+
+<p>&nbsp;</p>
+
+
+**Examples**
+
+<span class="xname">
+Calculate the population variance of a data set.
+</span>
+
+```{r class.source="output"}
+data <- c(37, 292, 175, 86, 331, 249, 104, 58, 368, 213)
+var.p(data)
+```
+
+<!-- DESCRIPTION OF sd.p FUNCTION -->
+## sd.p
+
+The `sd.p` function calculates the population standard deviation of a data set.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `sd.p(data)` where `data` is a data set.
+
+<p>&nbsp;</p>
+
+
+**Examples**
+
+<span class="xname">
+Calculate the population standard deviation of a data set.
+</span>
+
+```{r class.source="output"}
+data <- c(-3.2, 7.1, -12.5, 4.8, -0.6, 11.9, -9.4, 2.3, 6.7)
+sd.p(data)
+```
+
+<span class="xname">
+Computation of a z-score of a data value from a population
+</span>
+
+```{r class.source="output"}
+data <- c(3.1, 5.2, 6.3, 4.4, 2.8, 7.9, 1.0, 8.6, 0.7, 9.5, 4.1, 4.0)
+
+x_val <- 2.8
+# z-score
+( x_val - mean(data) )/sd.p(data)
+```
+
+
+<!-- DESCRIPTION OF Z_Interval FUNCTION -->
+## Z_Interval
+
+The `Z_Interval` function calculates the confidence interval for a population mean when the population standard deviation is known.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `Z_Interval(xbar, n, sigma, alpha)` where `xbar` is the sample mean, `n` is the sample size, `sigma` is the population standard deviation, and `alpha` is a value between 0 and 1 where `1 - alpha` is the confidence level as a decimal.
+
+For example, if `alpha = 0.02`, this represents a 98% confidence level. If `alpha` is omitted, a default value of 0.05 is used, representing a 95% confidence level for the interval.
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function will print the confidence level, margin or error, critical value, and the confidence interval (lower and upper bounds).
+
+Variables `critval`, `Lbound`, and `Ubound` are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Construct a 90% confidence interval of a sample with size $n = 36$ and mean $\bar{x} = 39.8$ from a population with known standard deviation $\sigma =6.4$.
+</span>
+```{r class.source="output"}
+Z_Interval(xbar = 39.8, n = 36, sigma = 6.4, alpha = 0.10)
+```
+<span class="xname">
+Construct a 98% confidence interval of a sample that comes from a population with standard deviation $\sigma = 12.8$.
+</span>
+
+```{r class.source="output"}
+# Define sample data
+sample_data <- c(17.4, 28.9, 52.9, 29.3, 21.1, 16.5, 16.9, 16.2, 15.7, 14.2, 26.7, 38.6, 23.6, 24.3, 22.9, 25.9, 24.4, 28.3, 4.9, 27.5)
+
+# Construct confidence interval
+Z_Interval(xbar = mean(sample_data), n = length(sample_data), sigma = 12.8, alpha = 0.02)
+
+```
+
+<!-- DESCRIPTION OF T_Interval FUNCTION -->
+## T_Interval
+
+The `T_Interval` function calculates the confidence interval for a population mean when the population standard deviation is not known, and the sample standard deviation is used instead. The confidence inteval is based on the Student's t-distribution.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `T_Interval(xbar, n, s, alpha)` where `xbar` is the sample mean, `n` is the sample size, `s` is the sample standard deviation, and `alpha` is a value between 0 and 1 where `1 - alpha` is the confidence level as a decimal.
+
+For example, if `alpha = 0.02`, this represents a 98% confidence level. If `alpha` is omitted, a default value of 0.05 is used, representing a 95% confidence level for the interval.
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function will print the confidence level, margin or error, number of degrees of freedom, critical value, and the confidence interval (lower and upper bounds).
+
+Variables `critval`, `Lbound`, and `Ubound` are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Construct a 95% confidence interval of a sample with size $n = 129$, and mean $\bar{x} = 67.6$, and sample standard deviation $s =18.2$.
+</span>
+```{r class.source="output"}
+T_Interval(xbar = 67.6, n = 129, s = 18.2, alpha = 0.05)
+```
+<span class="xname">
+Construct a 90% confidence interval of a sample.
+</span>
+
+```{r class.source="output"}
+# Define sample data
+exam_grades <- c(64, 70, 67, 60, 74, 63, 73, 72, 66, 71, 60, 65, 65, 76, 56, 70, 68, 67, 67, 62, 63, 60, 79, 69, 75)
+
+# Construct confidence interval
+T_Interval(xbar = mean(exam_grades), n = length(exam_grades), s = sd(exam_grades), alpha = 0.10)
+```
+
+
+<!-- DESCRIPTION OF One_Prop_Int FUNCTION -->
+## One_Prop_Int
+
+The `One_Prop_Int` function calculates the confidence interval for a population proportion. The confidence inteval is based on the normal distribution.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `One_Prop_Int(x, n, alpha)` where `x` is the nmber of individuals of interest in the sample, `n` is the sample size, and `alpha` is a value between 0 and 1 where `1 - alpha` is the confidence level as a decimal.
+
+For example, if `alpha = 0.02`, this represents a 98% confidence level. If `alpha` is omitted, a default value of 0.05 is used, representing a 95% confidence level for the interval.
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function will print the confidence level, margin or error, critical value, sample proportion, and the confidence interval (lower and upper bounds).
+
+Variables `sprop`, `critval`, `Lbound`, and `Ubound` are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Construct a 92% confidence interval when $x = 44$ and $n = 192$.
+</span>
+```{r class.source="output"}
+One_Prop_Int(x = 44, n = 192, alpha = 0.08)
+```
+<span class="xname">
+Construct a 90% confidence interval for the population proportion of the number of "Yes" in a sample.
+</span>
+
+```{r class.source="output"}
+# Define sample data
+sample_data <- c("No","No","No","Yes","Yes","Yes","No","Yes","No","No","No","No","No","Yes","No","No","No","Yes","No","Yes","No","Yes","Yes","No","No","Yes","Yes","No","No","Yes","Yes","No","No","No","Yes","No","No","Yes","Yes","Yes","Yes","Yes","Yes","Yes","No","No","Yes","No","Yes","Yes","Yes","No","No","Yes","No","No","No","Yes","No","Yes")
+
+# Summarize data into a table
+table(sample_data)
+
+# Extract yes's, unname, and assign to x
+x <- unname(table(sample_data)["Yes"])
+
+# Determine sample size
+n <- length(sample_data)
+
+# Explicitly state x (number of individuals of interest) and n (sample size)
+x; n
+
+# Construct 90% confidence interval
+One_Prop_Int(x, n, alpha = 0.10)
+```
+
+<!-- DESCRIPTION OF Z_Test FUNCTION -->
+## Z_Test
+
+The `Z_Test` function performs a hypothesis test about a population mean when the population standard deviation is known. P-values are calculated based on the normal distribution.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `Z_Test(xbar, n, sigma, mu0, alt)` where `xbar` is the sample mean, `n` is the sample size, `sigma` is the known population standard deviation, `mu0` is the hypothesized mean in the null hypothesis, and `alt` is the form of the alternate hypothesis.
+
+`alt` is a character string with choices "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function will print the test statistic `z` and the p-value.
+
+Variables `z` and `pvalue` are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Perform a hypothesis test of $H_0: \mu = 50$ versus $H_1: \mu < 50$ where $\bar{x} = 47.3$, $n = 44$, and $\sigma = 10.2$.
+</span>
+```{r class.source="output"}
+Z_Test(xbar = 47.3, n = 44, sigma = 10.2, mu0 = 50, alt = "left")
+```
+
+
+<span class="xname">
+Perform a hypothesis test of $H_0: \mu = 67.9$ versus $H_1: \mu \ne 67.9$ given a sample data set from a population with known standard deviation $\sigma = 14$.
+</span>
+```{r class.source="output"}
+# Define sample data
+my_data <- c(73, 92, 55, 85, 59, 87, 77, 52, 67, 88, 89, 54, 75, 68, 80, 90, 66, 78, 55, 86, 82, 63, 70, 84, 58, 53, 60, 91, 57, 71, 81, 69)
+
+# Perform hypothesis test
+Z_Test(xbar = mean(my_data), n = length(my_data), sigma = 14, mu0 = 67.9, alt = "two")
+```
+
+<!-- DESCRIPTION OF T_Test FUNCTION -->
+## T_Test
+
+The `T_Test` function performs a hypothesis test about a population mean when the population standard deviation is not known, and the sample standard deviation is used instead. P-values are calculated based on the Student's t-distribution.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `T_Test(xbar, n, s, mu0, alt)` where `xbar` is the sample mean, `n` is the sample size, `s` is the sample standard deviation, `mu0` is the hypothesized mean in the null hypothesis, and `alt` is the form of the alternate hypothesis.
+
+`alt` is a character string with choices "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function will print the number of degrees of freedom, the test statistic `t`, and the p-value.
+
+Variables `t` and `pvalue` are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Perform a hypothesis test of $H_0: \mu = 192$ versus $H_1: \mu > 192$ where $\bar{x} = 199.7$, $n = 60$, and $s = 41.8$.
+</span>
+```{r class.source="output"}
+T_Test(xbar = 199.7, n = 60, s = 41.8, mu0 = 192, alt = "right")
+```
+<span class="xname">
+Perform a hypothesis test of $H_0: \mu = 71$ versus $H_1: \mu \ne 71$ given a sample data set (assume population is normally distributed).
+</span>
+```{r class.source="output"}
+# Define sample data
+my_data <- c(66, 71, 100, 76, 77, 102, 82, 55, 64, 68, 95, 81, 81, 77, 66, 104, 83, 44, 86, 67, 58, 72, 59, 63, 65, 48, 88, 77, 57, 95, 82, 70, 89, 89, 88, 86, 84, 74, 70, 69)
+
+
+# Perform hypothesis test
+T_Test(xbar = mean(my_data), n = length(my_data), s = sd(my_data), mu0 = 71, alt = "two")
+```
+
+<!-- DESCRIPTION OF One_Prop_Test FUNCTION -->
+## One_Prop_Test
+
+The `One_Prop_Test` function performs a one-sample hypothesis test about a population proportion.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `One_Prop_Test(x, n, p0, alt)` where `x` is the number of individuals of interest in the sample, `n` is the sample size, `p0` is the hypothesized proportion in the null hypothesis, and `alt` is the form of the alternate hypothesis.
+
+`alt` is a character string with choices "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function will print the sample proportion, the test statistic `z`, and the p-value.
+
+Variables `sprop`, `z` and `pvalue` are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Perform a hypothesis test of $H_0: p = 0.5$ versus $H_1: p < 0.5$ where $x = 480$ and $n = 1000$.
+</span>
+```{r class.source="output"}
+One_Prop_Test(x = 480, n = 1000, p0 = 0.5, alt = "left")
+
+```
+
+<span class="xname">
+Perform a hypothesis test of $H_0: p = 0.45$ versus $H_1: p > 0.45$ for the population proportion of the number of "B" in a sample.
+</span>
+
+```{r class.source="output"}
+# Define sample data
+samp <- c("A", "B", "B", "B", "B", "A", "A", "A", "A", "A", "B", "B", "A", "B", "B", "B", "A", "A", "B", "B", "A", "A", "A", "B", "A", "B", "B", "A", "A", "B", "B", "B", "A", "B", "A", "B", "B", "A", "B", "A", "B", "B", "B", "A", "B", "B", "A", "B", "A", "B", "B", "B", "B", "A", "A", "A", "B", "B", "B", "B")
+
+
+# Summarize data into a table
+table(samp)
+
+# Extract B's, unname, and assign to x
+x <- unname(table(samp)["B"])
+
+# Determine sample size
+n <- length(samp)
+
+# Explicitly state x (number of individuals of interest) and n (sample size)
+x; n
+
+# Perform the hypothesis test
+One_Prop_Test(x, n, p0 = 0.45, alt = "right")
+
+```
+
+<!-- DESCRIPTION OF Two_Samp_T_Interval FUNCTION -->
+## Two_Samp_T_Interval
+
+The `Two_Samp_T_Interval` function constructs a confidence interval for the difference between two population means (`mu_1 - mu_2`) given two independent samples. This confidence interval is based on the Student's t-distribution.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `Two_Samp_T_Interval(xbar1, s1, n1, xbar2, s2, n2, alpha)` where `xbar1` is the mean of Sample 1, `n1` is the size of Sample 1, `s1` is the standard deviation of Sample 1, `xbar2` is the mean of Sample 2, `n2` is the size of Sample 2, `s2` is the standard deviation of Sample 2, and `alpha` is a value between 0 and 1 where `1 - alpha` is the confidence level as a decimal.
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function will print the confidence level, margin of error, number of degrees of freedom, critical value, point estimate, and the confidence interval (lower and upper bounds).
+
+Variables `critval`, `point_est`, `Lbound`, and `Ubound` are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Construct a 99% confidence interval for $\mu_1 - \mu_2$ where $\bar{x}_1 = 10$, $s_1 = 2.5$, $n_1 = 125$, $\bar{x}_2 = 8.6$, $s_2 = 3.4$, $n_2 = 131$ and the samples are independent.
+</span>
+```{r class.source="output"}
+Two_Samp_T_Interval(xbar1 = 10, s1 = 2.5, n1 = 125, xbar2 = 8.6, s2 = 3.4, n2 = 131, alpha = 0.01)
+```
+<span class="xname">
+Construct a 90% confidence interval for $\mu_1 - \mu_2$ given two independent samples.
+</span>
+
+```{r class.source="output"}
+# Define Sample 1
+exam_1 <- c(58, 67, 61, 62, 78, 47, 59, 72, 89, 68, 37, 81, 64, 64, 62, 70, 80, 67, 48, 68, 81, 84, 62, 76, 52, 92, 72, 62, 79, 61, 56, 61, 67, 76, 61, 65, 77, 62, 72, 71, 57, 55, 58, 44, 62, 83, 73, 55, 60, 74)
+
+# Define Sample 2
+exam_2 <- c(76, 47, 31, 35, 69, 42, 79, 60, 56, 74, 25, 69, 79, 37, 48, 58, 30, 54, 43, 57, 48, 62, 49, 44, 57, 61, 61, 56, 41, 31, 78, 59, 35, 31, 47, 47, 53, 69, 28, 76, 59, 51, 57, 38, 70, 64)
+
+# Calculate sample statistics
+xbar1 <- mean(exam_1); n1 <- length(exam_1); s1 <- sd(exam_1)
+xbar2 <- mean(exam_2); n2 <- length(exam_2); s2 <- sd(exam_2)
+
+# Construct confidence interval
+Two_Samp_T_Interval(xbar1, s1, n1, xbar2, s2, n2, alpha = 0.10)
+```
+
+<!-- DESCRIPTION OF Two_Samp_T_Test FUNCTION -->
+## Two_Samp_T_Test
+
+The `Two_Samp_T_Test` function performs a hypothesis test about the difference between two population means `(mu_1 - mu_2)` given two independent samples. P-values are calculated based on the Student's t-distribution.
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `Two_Samp_T_Test(xbar1, s1, n1, xbar2, s2, n2, alt, mu0)` where `xbar1` is the mean of Sample 1, `n1` is the size of Sample 1, `s1` is the standard deviation of Sample 1, `xbar2` is the mean of Sample 2, `n2` is the size of Sample 2, `s2` is the standard deviation of Sample 2, `mu0` is the hypothesized difference in the null hypothesis, and `alt` is the form of the alternate hypothesis.
+
+`alt` is a character string with choices "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.
+
+<p>&nbsp;</p>
+
+
+**Return**
+
+The function will print the number of degrees of freedom, the test statistic `t`, and the p-value.
+
+Variables `t` and `pvalue`are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Perform a hypothesis test for $H_0: \mu_1 = \mu_2$ versus $H_1: \mu_1 \ne \mu_2$ where $\bar{x}_1 = 34.8$, $s_1 = 5.2$, $n_1 = 55$, $\bar{x}_2 = 32.8$, $s_2 = 3.8$, $n_2 = 61$ and the samples are independent.
+</span>
+```{r class.source="output"}
+Two_Samp_T_Test(xbar1 = 34.8, s1 = 5.2, n1 = 55, xbar2 = 32.8, s2 = 3.8, n2 = 61, alt = "two", mu0 = 0)
+```
+<span class="xname">
+Perform a hypothesis test for $H_0: \mu_1 = \mu_2$ versus $H_1: \mu_1 < \mu_2$ given two independent samples. 
+</span>
+
+```{r class.source="output"}
+# Define Sample 1
+old_process <- c(1075, 1012, 980, 1035, 1001, 978, 965, 1030, 990, 1023, 1015, 998, 1075, 1008, 1085, 976, 1105, 1002, 987, 1021, 992, 1010, 1003, 1006, 1090, 988, 1001, 965, 1007, 973, 998, 982, 965, 1015, 987, 1000, 1089, 1109, 995, 1104, 1075, 1018, 1025, 981, 1077, 995)
+
+# Define Sample 2
+new_process <- c(1048, 966, 1029, 1098, 1064, 1035, 1042, 1056, 932, 1085, 1092, 943, 1060, 1045, 958, 1072, 1068, 1043, 1050, 1066, 1037, 1082, 1075, 1054, 929, 1089, 919, 923, 1069, 1080, 1046, 1078, 947, 1057, 1067, 925)
+
+# Calculate sample statistics
+xbar1 <- mean(old_process); n1 <- length(old_process); s1 <- sd(old_process)
+xbar2 <- mean(new_process); n2 <- length(new_process); s2 <- sd(new_process)
+
+# Perform hypothesis test
+Two_Samp_T_Test(xbar1, s1, n1, xbar2, s2, n2, alt = "left", mu0 = 0)
+```
+
+<!-- DESCRIPTION OF Two_Prop_Int FUNCTION -->
+## Two_Prop_Int
+
+The `Two_Prop_Int` function calculates the confidence interval for the difference between two population proportions `(p_1 - p_2)`.
+
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `Two_Prop_Int(x1, n1, x2, n2, alpha)` where `x1` is the number of individuals of interest in Sample 1, `n1` is the size of Sample 1,  `x2` is the number of individuals of interest in Sample 2, `n2` is the size of Sample 2, and and `alpha` is a value between 0 and 1 where `1 - alpha` is the confidence level as a decimal.
+
+<p>&nbsp;</p>
+
+**Return**
+
+The function will print the confidence level, margin of error, critical value, point estimate, and the confidence interval (lower and upper bounds).
+
+Variables `sprop1`, `sprop2`, `point_est`, `critval`, `Lbound`, and `Ubound` are available as return values after execution of this function.
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Construct a 95% confidence interval for $p_1 - p_2$ where $x_1 = 74$, $n_1 = 285$, $x_2 = 168$, and $n_2 = 400$.
+</span>
+```{r class.source="output"}
+Two_Prop_Int(x1 = 74, n1 = 285, x2 = 168, n2 = 400, alpha = 0.05)
+
+```
+
+<span class="xname">
+Construct a 90% confidence interval for $p_1 - p_2$ for the difference in the number of "Yes" in Sample 1 and Sample 2.
+</span>
+
+```{r class.source="output"}
+# Define Sample 1
+samp1 <- c("No", "Yes", "Yes", "No", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "Yes")
+
+# Define Sample 2
+samp2 <- c("No", "No", "Yes", "No", "No", "Yes", "No", "Yes", "Yes", "Yes", "No", "No", "No", "No", "Yes", "Yes", "Yes", "No", "Yes", "No", "No", "No", "Yes", "Yes", "Yes", "No", "No", "No", "Yes", "No", "No", "No", "No", "No", "No", "Yes", "No", "No", "Yes", "Yes")
+
+# Summarize Sample 1 data into a table
+table(samp1)
+
+# Summarize Sample 2 data into a table
+table(samp2)
+
+# Extract Yes's, unname, and assign to x1 in Sample 1
+x1 <- unname(table(samp1)["Yes"])
+
+# Extract Yes's, unname, and assign to x2 in Sample 2
+x2 <- unname(table(samp2)["Yes"])
+
+# Determine sample size for Sample 1
+n1 <- length(samp1)
+
+# Determine sample size for Sample 2
+n1 <- length(samp2)
+
+# Explicitly state x1 (individuals of interest in Sample 1), n1 (Sample 1 size), x2 (individuals of interest in Sample 2), n2 (Sample 2 size),
+x1; n1; x2; n2;
+
+# Construct confidence interval
+Two_Prop_Int(x1, n1, x2, n2, alpha = 0.10)
+```
+
+
