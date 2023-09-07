@@ -31,21 +31,18 @@ outlier_bounds <-
     IQR <- Q3 - Q1
 
     # Compute outlier bound
-    Lower.bound <- round(Q1 - 1.5*IQR, 5)
-    Upper.bound <- round(Q3 + 1.5*IQR, 5)
+    Lower.bound <- round(Q1 - 1.5 * IQR, 5)
+    Upper.bound <- round(Q3 + 1.5 * IQR, 5)
 
     # Print the results in a user-friendly manner
-    cat(
-      "\nLower Outlier Bound:",
-      Lower.bound,
-      "\nUpper Outlier Bound:",
-      Upper.bound,
-      "\n"
-    )
-  # Return the values
+    cat("\nLower Outlier Bound:",
+        Lower.bound,
+        "\nUpper Outlier Bound:",
+        Upper.bound,
+        "\n")
+    # Return the values
     result <- list(Lower.bound = Lower.bound,
                    Upper.bound = Upper.bound)
 
     return(invisible(result))
   }
-
