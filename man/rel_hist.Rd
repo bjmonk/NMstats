@@ -2,24 +2,25 @@
 % Please edit documentation in R/rel_hist.R
 \name{rel_hist}
 \alias{rel_hist}
-\title{Relative Histogram}
+\title{Relative Frequency Histogram}
 \usage{
-rel_hist(x, ...)
+rel_hist(data, bins = 30, col = "steelblue", xlab = "Data", ylab = "Relative Frequencies", main = "Relative Frequency Histogram", ybreaks = NULL)
 }
 \arguments{
-\item{x}{a vector of values for the relative histogram}
+\item{data}{A numeric vector containing the data to be plotted.}
 
-\item{...}{further arguments and graphical parameters available in the \code{hist} function.}
-}
-\value{
-The function returns, invisibly, a list containing:
-\itemize{
-\item \code{breaks}: A vector containing the cell boundaries.
-\item \code{counts}: A vector containing the relative frequencies for each class.
-\item \code{mids}: A vector containing the cell midpoints
-}
-You can access these values with expressions like \code{res$breaks}, \code{res$counts}, and \code{res$mids} where \code{res} is the result of the function.
+\item{bins}{The number of bins to use for the histogram. The default is 30.}
+
+\item{col}{The fill color for the histogram bars.}
+
+\item{xlab}{The label for the x-axis.}
+
+\item{ylab}{The label for the y-axis.}
+
+\item{main}{The main title for the plot.}
+
+\item{ybreaks}{A numeric vector specifying where to place tick marks on the y-axis. If NULL, tick marks are automatically calculated.}
 }
 \description{
-The function \code{rel_hist} computes a relative histogram of given data values.
+The function \code{rel_hist} computes a relative frequency histogram of given data values.
 }
