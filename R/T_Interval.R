@@ -17,6 +17,8 @@
 #'     }
 #' You can access these values with expressions like \code{res$critval}, \code{res$Lbound}, and \code{res$Ubound} where \code{res} is the result of the function.
 #'
+#' If invalid input values are given, an error message is returned.
+#'
 #'@importFrom stats qt
 #'
 #' @note This function is appropriate when the population standard deviation is not known. If the population standard deviation is known, consider using the  \code{\link{Z_Interval}} function, based on the normal distribution.

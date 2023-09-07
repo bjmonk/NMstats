@@ -17,12 +17,31 @@
 #'     }
 #' You can access these values with expressions like \code{res$sprop}, \code{res$critval}, \code{res$Lbound}, and \code{res$Ubound} where \code{res} is the result of the function.
 #'
+#' If invalid input values are given, an error message is returned.
+#'
 #' @importFrom stats qnorm
 #' @export
 
 
 One_Prop_Int <- function(x, n, alpha = 0.05)
 {
+  # Check constraints on alpha, x, and n
+  if (alpha <= 0 || alpha >= 1) {
+    stop("Error: The value of alpha must be between 0 and 1.")
+  }
+
+  if (floor(x) != x || x < 0) {
+    stop("Error: The value of 'x' must be a non-negative integer.")
+  }
+
+  if (floor(n) != n || n <= 0) {
+    stop("Error: Sample size 'n' must be a positive integer.")
+  }
+
+  if (x > n) {
+    stop("Error: The value of 'x' must be less than or equal to 'n'.")
+  }
+
   # Calculate confidence level
   conf_lev <- (1 - alpha) * 100
 
@@ -42,7 +61,8 @@ One_Prop_Int <- function(x, n, alpha = 0.05)
   # Print the results in a user-friendly manner
   cat(
     "Confidence Level:",
-    round(conf_lev, 5), "%",
+    round(conf_lev, 5),
+    "%",
     "\nMargin of Error:",
     round(margin_error, 5),
     "\nCritical Value:",

@@ -17,6 +17,8 @@
 #'     }
 #' You can access these values with expressions like \code{res$critval}, \code{res$Lbound}, and \code{res$Ubound} where \code{res} is the result of the function.
 #'
+#' If invalid input values are given, an error message is returned.
+#'
 #' @importFrom stats qnorm
 #'
 #' @note This function assumes the population standard deviation is known. If the population standard deviation is not known, consider using the \code{\link{T_Interval}} function, based on the Student's t-distribution.

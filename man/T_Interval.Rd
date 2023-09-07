@@ -23,6 +23,8 @@ The function returns, invisibly, a list containing:
 \item \code{Ubound}: The upper boundary of the confidence interval.
 }
 You can access these values with expressions like \code{res$critval}, \code{res$Lbound}, and \code{res$Ubound} where \code{res} is the result of the function.
+
+If invalid input values are given, an error message is returned.
 }
 \description{
 This function calculates the confidence interval for a population mean when the population standard deviation is not known. This confidence interval is based on the Student's t-distribution.

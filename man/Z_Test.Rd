@@ -4,7 +4,7 @@
 \alias{Z_Test}
 \title{Hypothesis Test for a Population Mean, Standard Deviation Known}
 \usage{
-Z_Test(xbar, n, sigma, mu0, alt = "two")
+Z_Test(xbar, n, sigma, mu, alt = "two")
 }
 \arguments{
 \item{xbar}{The sample mean.}
@@ -13,7 +13,7 @@ Z_Test(xbar, n, sigma, mu0, alt = "two")
 
 \item{sigma}{The population standard deviation.}
 
-\item{mu0}{The hypothesized mean in the null hypothesis.}
+\item{mu}{The hypothesized mean in the null hypothesis.}
 
 \item{alt}{A character string specifying the alternate hypothesis. Choices are "left", "right", or "two". If omitted, the default is "two". The choices "less", "greater", or "two.sided" are also accepted.}
 }
@@ -24,6 +24,8 @@ The function returns, invisibly, a list containing:
 \item \code{pvalue}: The p-value corresponding to the test statistic.
 }
 You can access these values with expressions like \code{res$z}, and \code{res$pvalue} where \code{res} is the result of the function.
+
+If invalid input values are given, an error message is returned.
 }
 \description{
 This function performs a hypothesis test about a population mean when the population standard deviation is known. P-values are calculated based on the normal distribution.
