@@ -212,14 +212,21 @@ The `rel_hist` function constructs a relative histogram for a data set.
 
 **Usage**
 
-The format is `rel_hist(data, ...)` where `data` is a data set and `...` refers to further arguments and options available in the `hist` command.. 
+The format is `rel_hist(data, bins, col, xlab, ylab, main, ybreaks)` where `data` is a data set. 
+
+Optional arguments are: 
+
+* `bins` is the number of bins to use
+* `col` is the fill color
+* `xlab` and `ylab` are the labels for the axes
+* `main` is the title of the graph
+* `ybreaks` is a numeric vector specifying the tick marks on the y-axis.
 
 <p>&nbsp;</p>
 
-
 **Return**
 
-The function constructs a relative histogram. Variables `breaks`, `counts`, and `mids` are available as return values after execution of this function.
+The function constructs a relative frequency histogram. 
 
 <p>&nbsp;</p>
 
@@ -230,7 +237,7 @@ Generate random data and construct relative histogram
 </span>
 
 ```{r class.source="output", fig.width=4}
-data <- sample(1:15, 100, replace = TRUE)
+data <- sample(1:55, 110, replace = TRUE)
 rel_hist(data)
 ```
 
@@ -452,7 +459,7 @@ The `Z_Test` function performs a hypothesis test about a population mean when th
 
 **Usage**
 
-The format is `Z_Test(xbar, n, sigma, mu0, alt)` where `xbar` is the sample mean, `n` is the sample size, `sigma` is the known population standard deviation, `mu0` is the hypothesized mean in the null hypothesis, and `alt` is the form of the alternate hypothesis.
+The format is `Z_Test(xbar, n, sigma, mu, alt)` where `xbar` is the sample mean, `n` is the sample size, `sigma` is the known population standard deviation, `mu` is the hypothesized mean in the null hypothesis, and `alt` is the form of the alternate hypothesis.
 
 `alt` is a character string with choices "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.
 
@@ -473,7 +480,7 @@ Variables `z` and `pvalue` are available as return values after execution of thi
 Perform a hypothesis test of $H_0: \mu = 50$ versus $H_1: \mu < 50$ where $\bar{x} = 47.3$, $n = 44$, and $\sigma = 10.2$.
 </span>
 ```{r class.source="output"}
-Z_Test(xbar = 47.3, n = 44, sigma = 10.2, mu0 = 50, alt = "left")
+Z_Test(xbar = 47.3, n = 44, sigma = 10.2, mu = 50, alt = "left")
 ```
 
 
@@ -485,7 +492,7 @@ Perform a hypothesis test of $H_0: \mu = 67.9$ versus $H_1: \mu \ne 67.9$ given 
 my_data <- c(73, 92, 55, 85, 59, 87, 77, 52, 67, 88, 89, 54, 75, 68, 80, 90, 66, 78, 55, 86, 82, 63, 70, 84, 58, 53, 60, 91, 57, 71, 81, 69)
 
 # Perform hypothesis test
-Z_Test(xbar = mean(my_data), n = length(my_data), sigma = 14, mu0 = 67.9, alt = "two")
+Z_Test(xbar = mean(my_data), n = length(my_data), sigma = 14, mu = 67.9, alt = "two")
 ```
 
 <!-- DESCRIPTION OF T_Test FUNCTION -->
@@ -497,7 +504,7 @@ The `T_Test` function performs a hypothesis test about a population mean when th
 
 **Usage**
 
-The format is `T_Test(xbar, n, s, mu0, alt)` where `xbar` is the sample mean, `n` is the sample size, `s` is the sample standard deviation, `mu0` is the hypothesized mean in the null hypothesis, and `alt` is the form of the alternate hypothesis.
+The format is `T_Test(xbar, n, s, mu, alt)` where `xbar` is the sample mean, `n` is the sample size, `s` is the sample standard deviation, `mu` is the hypothesized mean in the null hypothesis, and `alt` is the form of the alternate hypothesis.
 
 `alt` is a character string with choices "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.
 
@@ -518,7 +525,7 @@ Variables `t` and `pvalue` are available as return values after execution of thi
 Perform a hypothesis test of $H_0: \mu = 192$ versus $H_1: \mu > 192$ where $\bar{x} = 199.7$, $n = 60$, and $s = 41.8$.
 </span>
 ```{r class.source="output"}
-T_Test(xbar = 199.7, n = 60, s = 41.8, mu0 = 192, alt = "right")
+T_Test(xbar = 199.7, n = 60, s = 41.8, mu = 192, alt = "right")
 ```
 <span class="xname">
 Perform a hypothesis test of $H_0: \mu = 71$ versus $H_1: \mu \ne 71$ given a sample data set (assume population is normally distributed).
@@ -529,7 +536,7 @@ my_data <- c(66, 71, 100, 76, 77, 102, 82, 55, 64, 68, 95, 81, 81, 77, 66, 104, 
 
 
 # Perform hypothesis test
-T_Test(xbar = mean(my_data), n = length(my_data), s = sd(my_data), mu0 = 71, alt = "two")
+T_Test(xbar = mean(my_data), n = length(my_data), s = sd(my_data), mu = 71, alt = "two")
 ```
 
 <!-- DESCRIPTION OF One_Prop_Test FUNCTION -->
@@ -650,7 +657,7 @@ The `Two_Samp_T_Test` function performs a hypothesis test about the difference b
 
 **Usage**
 
-The format is `Two_Samp_T_Test(xbar1, s1, n1, xbar2, s2, n2, alt, mu0)` where `xbar1` is the mean of Sample 1, `n1` is the size of Sample 1, `s1` is the standard deviation of Sample 1, `xbar2` is the mean of Sample 2, `n2` is the size of Sample 2, `s2` is the standard deviation of Sample 2, `mu0` is the hypothesized difference in the null hypothesis, and `alt` is the form of the alternate hypothesis.
+The format is `Two_Samp_T_Test(xbar1, s1, n1, xbar2, s2, n2, alt, mu)` where `xbar1` is the mean of Sample 1, `n1` is the size of Sample 1, `s1` is the standard deviation of Sample 1, `xbar2` is the mean of Sample 2, `n2` is the size of Sample 2, `s2` is the standard deviation of Sample 2, `mu` is the hypothesized difference in the null hypothesis, and `alt` is the form of the alternate hypothesis.
 
 `alt` is a character string with choices "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.
 
@@ -671,7 +678,7 @@ Variables `t` and `pvalue`are available as return values after execution of this
 Perform a hypothesis test for $H_0: \mu_1 = \mu_2$ versus $H_1: \mu_1 \ne \mu_2$ where $\bar{x}_1 = 34.8$, $s_1 = 5.2$, $n_1 = 55$, $\bar{x}_2 = 32.8$, $s_2 = 3.8$, $n_2 = 61$ and the samples are independent.
 </span>
 ```{r class.source="output"}
-Two_Samp_T_Test(xbar1 = 34.8, s1 = 5.2, n1 = 55, xbar2 = 32.8, s2 = 3.8, n2 = 61, alt = "two", mu0 = 0)
+Two_Samp_T_Test(xbar1 = 34.8, s1 = 5.2, n1 = 55, xbar2 = 32.8, s2 = 3.8, n2 = 61, alt = "two", mu = 0)
 ```
 <span class="xname">
 Perform a hypothesis test for $H_0: \mu_1 = \mu_2$ versus $H_1: \mu_1 < \mu_2$ given two independent samples. 
@@ -689,7 +696,7 @@ xbar1 <- mean(old_process); n1 <- length(old_process); s1 <- sd(old_process)
 xbar2 <- mean(new_process); n2 <- length(new_process); s2 <- sd(new_process)
 
 # Perform hypothesis test
-Two_Samp_T_Test(xbar1, s1, n1, xbar2, s2, n2, alt = "left", mu0 = 0)
+Two_Samp_T_Test(xbar1, s1, n1, xbar2, s2, n2, alt = "left", mu = 0)
 ```
 
 <!-- DESCRIPTION OF Two_Prop_Int FUNCTION -->

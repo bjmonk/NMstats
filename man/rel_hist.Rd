@@ -4,22 +4,22 @@
 \alias{rel_hist}
 \title{Relative Frequency Histogram}
 \usage{
-rel_hist(data, bins = 30, col = "steelblue", xlab = "Data", ylab = "Relative Frequencies", main = "Relative Frequency Histogram", ybreaks = NULL)
+rel_hist(data, bins, col, xlab, ylab, main, ybreaks)
 }
 \arguments{
 \item{data}{A numeric vector containing the data to be plotted.}
 
-\item{bins}{The number of bins to use for the histogram. The default is 30.}
+\item{bins}{\emph{Optional}. The number of bins to use for the histogram. The default is 30.}
 
-\item{col}{The fill color for the histogram bars.}
+\item{col}{\emph{Optional}. The fill color for the histogram bars.}
 
-\item{xlab}{The label for the x-axis.}
+\item{xlab}{\emph{Optional}. The label for the x-axis.}
 
-\item{ylab}{The label for the y-axis.}
+\item{ylab}{\emph{Optional}. The label for the y-axis.}
 
-\item{main}{The main title for the plot.}
+\item{main}{\emph{Optional}. The main title for the plot.}
 
-\item{ybreaks}{A numeric vector specifying where to place tick marks on the y-axis. If NULL, tick marks are automatically calculated.}
+\item{ybreaks}{\emph{Optional}. A numeric vector specifying where to place tick marks on the y-axis. If NULL, tick marks are automatically calculated.}
 }
 \description{
 The function \code{rel_hist} computes a relative frequency histogram of given data values.

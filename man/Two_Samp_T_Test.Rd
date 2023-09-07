@@ -21,7 +21,7 @@ Two_Samp_T_Test(xbar1, s1, n1, xbar2, s2, n2, alt = "two", mu = 0)
 
 \item{alt}{A required character string specifying the alternate hypothesis. Choices are "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.}
 
-\item{mu0}{The hypothesized mean in the null hypothesis. If omitted, \code{mu0} is assumed to be 0.}
+\item{mu}{The hypothesized mean in the null hypothesis. If omitted, \code{mu} is assumed to be 0.}
 }
 \value{
 The function returns, invisibly, a list containing:

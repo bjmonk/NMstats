@@ -9,7 +9,7 @@
 #' @param s2      The standard deviation of Sample 2.
 #' @param n2      The size of Sample 2.
 #' @param alt     A required character string specifying the alternate hypothesis. Choices are "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.
-#' @param mu0     The hypothesized mean in the null hypothesis. If omitted, `mu0` is assumed to be 0.
+#' @param mu     The hypothesized mean in the null hypothesis. If omitted, `mu` is assumed to be 0.
 #' @details The function will print the number of degrees of freedom, the test statistic t and the p-value for the test about `mu_1 - mu_2`.
 #'
 #' @return  The function returns, invisibly, a list containing:

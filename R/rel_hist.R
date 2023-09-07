@@ -3,17 +3,18 @@
 #'
 #' The function `rel_hist` computes a relative frequency histogram of given data values.
 
-#' @usage rel_hist(data, bins = 30, col = "steelblue", xlab = "Data", ylab = "Relative Frequencies", main = "Relative Frequency Histogram", ybreaks = NULL)
+#' @usage rel_hist(data, bins, col, xlab, ylab, main, ybreaks)
 
 #' @param data A numeric vector containing the data to be plotted.
-#' @param bins The number of bins to use for the histogram. The default is 30.
-#' @param col The fill color for the histogram bars.
-#' @param xlab The label for the x-axis.
-#' @param ylab The label for the y-axis.
-#' @param main The main title for the plot.
-#' @param ybreaks A numeric vector specifying where to place tick marks on the y-axis. If NULL, tick marks are automatically calculated.
+#' @param bins *Optional*. The number of bins to use for the histogram. The default is 30.
+#' @param col *Optional*. The fill color for the histogram bars.
+#' @param xlab *Optional*. The label for the x-axis.
+#' @param ylab *Optional*. The label for the y-axis.
+#' @param main *Optional*. The main title for the plot.
+#' @param ybreaks *Optional*. A numeric vector specifying where to place tick marks on the y-axis. If NULL, tick marks are automatically calculated.
 #'
 #' @importFrom graphics hist
+#' @importFrom graphics rect
 #'
 #' @export
 
@@ -23,7 +24,7 @@ rel_hist <-
            bins = 30,
            col = "steelblue",
            xlab = "Data",
-           ylab = "Relative Frequency",
+           ylab = "Relative Frequencies",
            main = "Relative Frequency Histogram",
            ybreaks = NULL) {
 
