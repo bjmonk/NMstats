@@ -78,4 +78,4 @@ The `Two_Prop_Int` function calculates the confidence interval for the differenc
 
 ## Examples
 
-See [How To Use NMstats](https://barrymonk.com/how_to_use_NMstats.html){target="_blank"}
+See [How To Use NMstats](https://barrymonk.com/how_to_use_NMstats.html)
