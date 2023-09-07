@@ -24,14 +24,21 @@
 #' @export
 
 
-Z_Interval <- function(xbar, n, sigma, alpha = 0.05) {
-  #... [Function implementation]
-}
-
-
-
 Z_Interval <- function(xbar, n, sigma, alpha = 0.05)
 {
+  # Check constraints on alpha, sigma, and n
+  if (alpha <= 0 || alpha >= 1) {
+    stop("Error: The value of alpha must be between 0 and 1.")
+  }
+
+  if (sigma < 0) {
+    stop("Error: Sigma must be a non-negative value.")
+  }
+
+  if (floor(n) != n || n <= 0) {
+    stop("Error: Sample size 'n' must be a positive integer.")
+  }
+
   # Calculate confidence level
   conf_lev <- (1 - alpha) * 100
 

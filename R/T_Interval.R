@@ -25,6 +25,19 @@
 
 T_Interval <- function(xbar, n, s, alpha = 0.05)
 {
+  # Check constraints on alpha, s, and n
+  if (alpha <= 0 || alpha >= 1) {
+    stop("Error: The value of alpha must be between 0 and 1.")
+  }
+
+  if (s < 0) {
+    stop("Error: Sample standard deviation 's' must be a non-negative value.")
+  }
+
+  if (floor(n) != n || n <= 0) {
+    stop("Error: Sample size 'n' must be a positive integer.")
+  }
+
   # Calculate confidence level
   conf_lev <- (1 - alpha) * 100
 
@@ -41,7 +54,8 @@ T_Interval <- function(xbar, n, s, alpha = 0.05)
   # Print the results in a user-friendly manner
   cat(
     "Confidence Level:",
-    round(conf_lev, 5), "%",
+    round(conf_lev, 5),
+    "%",
     "\nMargin of Error:",
     round(margin_error, 5),
     "\nNumber of Degrees of Freedom:",

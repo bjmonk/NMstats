@@ -12,7 +12,7 @@ perms(n, r)
 \item{r}{The number of items to choose from \code{n}.}
 }
 \value{
-An integer value representing the number of permutations of \code{r} items chosen from \code{n}.
+An integer value representing the number of permutations of \code{r} items chosen from \code{n}. If invalid input values are given, an error message is returned.
 }
 \description{
 The function calculates the number of ways to choose \code{r} items from a total of \code{n} items without replacement and where the order matters.
