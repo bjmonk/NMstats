@@ -4,7 +4,7 @@
 \alias{T_Test}
 \title{Hypothesis Test for a Population Mean, Standard Deviation Unknown}
 \usage{
-T_Test(xbar, n, s, mu0, alt = "two")
+T_Test(xbar, n, s, mu, alt = "two")
 }
 \arguments{
 \item{xbar}{The sample mean.}
@@ -13,7 +13,7 @@ T_Test(xbar, n, s, mu0, alt = "two")
 
 \item{s}{The sample standard deviation.}
 
-\item{mu0}{The hypothesized mean in the null hypothesis.}
+\item{mu}{The hypothesized mean in the null hypothesis.}
 
 \item{alt}{A character string specifying the alternate hypothesis. Choices are "left", "right", or "two". If omitted, the default is "two". The choices "less", "greater", or "two.sided" are also accepted.}
 }

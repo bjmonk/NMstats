@@ -28,6 +28,33 @@
 
 Two_Prop_Int <- function(x1, n1, x2, n2, alpha = 0.05)
 {
+  # Input validation
+  if (!is.numeric(x1) ||
+      !is.numeric(x2) || !is.numeric(n1) || !is.numeric(n2)) {
+    stop("All inputs x1, n1, x2, n2 must be numeric.")
+  }
+
+  if (x1 < 0 || x2 < 0) {
+    stop("The number of successes (x1 and x2) must be non-negative.")
+  }
+
+  if (n1 <= 0 || n2 <= 0) {
+    stop("Sample sizes (n1 and n2) must be greater than zero.")
+  }
+
+  if (x1 > n1) {
+    stop("The number of successes (x1) cannot be greater than the sample size (n1).")
+  }
+
+  if (x2 > n2) {
+    stop("The number of successes (x2) cannot be greater than the sample size (n2).")
+  }
+
+  if (alpha <= 0 || alpha >= 1) {
+    stop("The significance level (alpha) must be between 0 and 1.")
+  }
+
+
   # Calculate confidence level
   conf_lev <- (1 - alpha) * 100
 
@@ -52,7 +79,8 @@ Two_Prop_Int <- function(x1, n1, x2, n2, alpha = 0.05)
   # Print the results in a user-friendly manner
   cat(
     "Confidence Level:",
-    round(conf_lev, 5), "%",
+    round(conf_lev, 5),
+    "%",
     "\nMargin of Error:",
     round(margin_error, 5),
     "\nCritical Value:",

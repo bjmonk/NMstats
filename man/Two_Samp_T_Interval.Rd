@@ -30,6 +30,8 @@ The function returns, invisibly, a list containing:
 \item \code{Ubound}: The upper boundary of the confidence interval.
 }
 You can access these values with expressions like \code{res$critval}, \code{res$Lbound}, and \code{res$Ubound} where \code{res} is the result of the function.
+
+If invalid input values are given, an error message is returned.
 }
 \description{
 This function constructs a confidence interval for the difference between two population means (\code{mu_1 - mu_2}) given two independent samples. This confidence interval is based on the Student's t-distribution.

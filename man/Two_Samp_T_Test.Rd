@@ -4,7 +4,7 @@
 \alias{Two_Samp_T_Test}
 \title{Hypothesis Test for the Difference Between Two Means: Independent Samples}
 \usage{
-Two_Samp_T_Test(xbar1, s1, n1, xbar2, s2, n2, alt = "two", mu0 = 0)
+Two_Samp_T_Test(xbar1, s1, n1, xbar2, s2, n2, alt = "two", mu = 0)
 }
 \arguments{
 \item{xbar1}{The mean of Sample 1.}
@@ -30,6 +30,8 @@ The function returns, invisibly, a list containing:
 \item \code{pvalue}: The p-value corresponding to the test statistic.
 }
 You can access these values with expressions like \code{res$t}, and \code{res$pvalue} where \code{res} is the result of the function.
+
+If invalid input values are given, an error message is returned.
 }
 \description{
 This function performs a hypothesis test about the difference between two population means (\code{mu_1 - mu_2}) given two independent samples. P-values are calculated based on the Student's t-distribution.
