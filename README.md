@@ -18,7 +18,7 @@ or with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_url("https://barrymonk.com/NMstats_1.0.2.tar.gz")
+devtools::install_url("https://barrymonk.com/NMstats_1.1.2.tar.gz")
 ```
 
 ## Usage
@@ -45,7 +45,7 @@ The `outlier_bounds` function computes the lower and upper outlier boundaries of
 The `data_range` function computes the range of a data set.
 
 ### `rel_hist`
-The `rel_hist` function computes a relative histogram of given data values.
+The `rel_hist` function constructs a relative frequency histogram of given data values.
 
 ### `Z_Interval`
 The `Z_Interval` function calculates the confidence interval for a population mean when the population standard deviation is known.
@@ -78,11 +78,4 @@ The `Two_Prop_Int` function calculates the confidence interval for the differenc
 
 ## Examples
 
-``` r
-library(NMstats)
-# Example data
-data <- c(100, 143, 98, 281, 309, 221, 77, 151, 318)
-# Construct 99% confidence interval for the mean with population standard deviation unknown (T_Interval)
-T_Interval(mean(data), length(data), sd(data), alpha = 0.01)
-```
-
+See [How To Use NMstats](https://barrymonk.com/how_to_use_NMstats.html)
