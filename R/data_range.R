@@ -10,8 +10,7 @@
 data_range <-
   function(x)
   {
-
-  # Return the value
+    # Return the value
     result <- max(x) - min(x)
 
     return(result)
