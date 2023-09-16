@@ -767,4 +767,53 @@ x1; n1; x2; n2;
 Two_Prop_Int(x1, n1, x2, n2, alpha = 0.10)
 ```
 
+<!-- DESCRIPTION OF Sign_Test FUNCTION -->
+## Sign_Test
+
+The `Sign_Test` function performs a one-sample Sign Test for a population median when the population distribution is not necessarily normal. Critical values are included based on specified alpha levels and alternate hypotheses.
+
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `Sign_Test(sample, m0, alpha, alt)` where `sample` is a numeric vector of the sample data, `m0` is the hypothesized median, `alpha` is the significance level. Choices for one-tailed tests include 0.005, 0.01, 0.025, 0.05. Choices for two-tailed tests include 0.01, 0.02, 0.05, 0.10. `alt` is the form of the alternate hypothesis.
+
+`alt` is a character string with choices "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.
+
+
+<p>&nbsp;</p>
+
+**Return**
+
+The function will print detailed output including the null and alternate hypotheses, significance level, test statistic, critical value, and test result. 
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+Perform a hypothesis test for $H_0: m = 3$ versus $H_1: m < 3$ at the $\alpha = 0.05$ level of significance given a sample of data.
+
+```{r}
+# Define sample data
+data <- c(2.93, 2.95, 2.76, 2.89, 2.57, 3.06, 2.61, 2.66, 2.98, 2.79, 2.96, 2.74)
+
+# Perform the test
+Sign_Test(data, m0 = 3, alpha = 0.05, alt = "less")
+```
+
+<span class="xname">
+Perform a hypothesis test for $H_0: m = 170$ versus $H_1: m < 170$ at the $\alpha = 0.01$ level of significance given a sample of data.
+
+```{r}
+# Define sample data
+data <- c(149, 144, 218, 153, 134, 152, 148, 144, 178, 107, 199, 135, 171, 110, 160, 119, 86, 127, 106, 153, 169, 153, 153, 173, 156, 145, 205, 132, 169, 174, 130, 175)
+
+# Perform the test
+Sign_Test(data, m0 = 170, alpha = 0.01, alt = "less")
+```
+
+
+
 
