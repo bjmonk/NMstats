@@ -2,7 +2,7 @@
 % Please edit documentation in R/Sign_Test.R
 \name{Sign_Test}
 \alias{Sign_Test}
-\title{Nonparametric Sign Test for Medians (Critical Values)}
+\title{Sign Test for Testing a Median}
 \usage{
 Sign_Test(sample, m0, alpha, alt = "two.sided")
 }
@@ -16,7 +16,7 @@ Sign_Test(sample, m0, alpha, alt = "two.sided")
 \item{alt}{A character string specifying the alternate hypothesis. Choices are "left", "right", or "two". If omitted, the default is "two". The choices "less", "greater", or "two.sided" are also accepted.}
 }
 \description{
-This function performs a one-sample Sign Test for a population median when the population distribution is not necessarily normal. Critical values are included based on specified alpha levels and alternate hypotheses.
+This function performs a nonparametric one-sample Sign Test for a population median when the population distribution is not necessarily normal. Critical values are included based on specified alpha levels and alternate hypotheses.
 }
 \details{
 The function calculates the test statistic, critical value, and determines whether to reject the null hypothesis. It provides detailed output including the null and alternate hypotheses, significance level, test statistic, critical value, and the test result.
