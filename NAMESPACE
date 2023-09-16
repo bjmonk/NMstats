@@ -2,6 +2,7 @@
 
 export(One_Prop_Int)
 export(One_Prop_Test)
+export(Sign_Test)
 export(T_Interval)
 export(T_Test)
 export(Two_Prop_Int)
