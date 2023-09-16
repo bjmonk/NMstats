@@ -1,6 +1,6 @@
-#' Nonparametric Sign Test for Medians (Critical Values)
+#' Sign Test for Testing a Median
 #'
-#' This function performs a one-sample Sign Test for a population median when the population distribution is not necessarily normal. Critical values are included based on specified alpha levels and alternate hypotheses.
+#' This function performs a nonparametric one-sample Sign Test for a population median when the population distribution is not necessarily normal. Critical values are included based on specified alpha levels and alternate hypotheses.
 #'
 #' @param sample A numeric vector representing the sample data.
 #' @param m0 Hypothesized population median in the null hypothesis.
@@ -9,6 +9,7 @@
 #'
 #' @details The function calculates the test statistic, critical value, and determines whether to reject the null hypothesis. It provides detailed output including the null and alternate hypotheses, significance level, test statistic, critical value, and the test result.
 #'
+#' @import stats qnorm
 #' @export
 
 
