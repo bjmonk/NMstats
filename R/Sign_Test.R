@@ -9,7 +9,7 @@
 #'
 #' @details The function calculates the test statistic, critical value, and determines whether to reject the null hypothesis. It provides detailed output including the null and alternate hypotheses, significance level, test statistic, critical value, and the test result.
 #'
-#' @import stats qnorm
+#' @importFrom stats qnorm
 #' @export
 
 
@@ -58,7 +58,7 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
   } else if (alt %in% c("right", "greater")) {
     alternate_hypothesis <- paste("H1: m >", m0)
   } else {
-    alternate_hypothesis <- paste("H1: m ≠", m0)
+    alternate_hypothesis <- paste("H1: m is not equal", m0)
   }
 
   # Step 2: Choose a significance level

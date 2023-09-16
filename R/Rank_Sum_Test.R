@@ -9,7 +9,7 @@
 #'
 #' @details The function provides detailed output including the null and alternate hypotheses, significance level, test statistic, p-value, and the test result.
 #'
-#' @import stats pnorm
+#' @importFrom stats pnorm
 #' @export
 
 Rank_Sum_Test <- function(sample1, sample2, alpha, alt = "two.sided") {
