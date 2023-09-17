@@ -1,4 +1,4 @@
-#' Rank Sum Test for Comparing the Medians of Two Populations.
+#' Rank Sum Test for Comparing the Medians of Two Populations
 #'
 #' This function performs the nonparametric Rank Sum Test for comparing the medians of populations
 #'
@@ -34,7 +34,7 @@ Rank_Sum_Test <- function(sample1, sample2, alpha, alt = "two.sided") {
 
   # Combine the two samples
   combined_sample <- c(sample1, sample2)
-  ranks <- rank(combined_sample)
+  ranks <- rank(combined_sample, ties.method = "average", na.last = "keep")
 
   # Split the ranks back into their original samples
   ranks1 <- ranks[1:length(sample1)]
@@ -71,6 +71,7 @@ Rank_Sum_Test <- function(sample1, sample2, alpha, alt = "two.sided") {
   reject_null <- p_value <= alpha
 
   # Print the results in a user-friendly manner
+
   cat(
     "Null Hypothesis:", null_hypothesis,
     "\nAlternate Hypothesis:", alternate_hypothesis,
@@ -81,3 +82,4 @@ Rank_Sum_Test <- function(sample1, sample2, alpha, alt = "two.sided") {
     "\n"
   )
 }
+

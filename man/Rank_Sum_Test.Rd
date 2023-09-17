@@ -2,7 +2,7 @@
 % Please edit documentation in R/Rank_Sum_Test.R
 \name{Rank_Sum_Test}
 \alias{Rank_Sum_Test}
-\title{Rank Sum Test for Comparing the Medians of Two Populations.}
+\title{Rank Sum Test for Comparing the Medians of Two Populations}
 \usage{
 Rank_Sum_Test(sample1, sample2, alpha, alt = "two.sided")
 }

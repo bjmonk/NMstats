@@ -15,20 +15,24 @@
 
 Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
 {
-  # Define Table A.7 data directly in the function
+  # Define Table A.7 from Navidi/Monk Table A.7 in Appendix A
   table_data <- data.frame(
-    n = 5:25,
-    `two.alpha_0.010` = c(NA, NA, NA, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5),
-    `two.alpha_0.020` = c(NA, NA, NA, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6),
-    `two.alpha_0.050` = c(NA, NA, NA, 0, 1, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 6),
-    `two.alpha_0.100` = c(0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 7),
-    `one.alpha_0.005` = c(NA, NA, NA, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5),
-    `one-alpha_0.010` = c(NA, NA, NA, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6),
-    `one-alpha_0.025` = c(NA, NA, NA, 0, 1, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6, 6),
-    `one-alpha_0.050` = c(0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 7)
+    n = 1:25,
+    `two.alpha_0.010` = c(rep(NA,7), 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5),
+    `two.alpha_0.020` = c(rep(NA, 6), 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6),
+    `two.alpha_0.050` = c(rep(NA, 5), 0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6),
+    `two.alpha_0.100` = c(rep(NA, 4), 0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 7)
   )
 
-  # Validate input
+  table_data$one.alpha_0.005 <- table_data$two.alpha_0.010
+  table_data$one.alpha_0.010 <- table_data$two.alpha_0.020
+  table_data$one.alpha_0.025 <- table_data$two.alpha_0.050
+  table_data$one.alpha_0.050 <- table_data$two.alpha_0.100
+
+
+
+
+  # Error check input values
 
   if (!alt %in% c("left", "less", "right", "greater", "two", "two.sided")) {
     stop(
@@ -45,13 +49,12 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
     stop("Error: For one-tailed tests, 'alpha' must be one of 0.005, 0.01, 0.025, or 0.05")
   }
 
-
   if (alt %in% c("two", "two.sided") &&
       !alpha %in% c(0.01, 0.02, 0.05, 0.1)) {
     stop("Error: For two-tailed tests, 'alpha' must be one of 0.01, 0.02, 0.05, or 0.1")
   }
 
-  # Step 1: State the null and alternate hypotheses
+  # Define  null and alternate hypotheses
   null_hypothesis <- paste("H0: m =", m0)
   if (alt %in% c("left", "less")) {
     alternate_hypothesis <- paste("H1: m <", m0)
@@ -61,23 +64,25 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
     alternate_hypothesis <- paste("H1: m is not equal", m0)
   }
 
-  # Step 2: Choose a significance level
-  significance_level <- alpha
+  # Identify significance level
+  sig_level <- alpha
 
-  # Step 3: Count the number of plus and minus signs and total of both (n)
+  # Count the number of plus and minus signs and total of both (n)
   n_plus <- sum(sample > m0)
   n_minus <- sum(sample < m0)
   x <- min(n_plus, n_minus)
   n <- n_plus + n_minus
 
-  # Step 4: Compute the test statistic based on whether n <= 25 or n > 25
+  # Compute the test statistic based on whether n <= 25 or n > 25
   if (n <= 25) {
     test_statistic <- x
   } else {
     test_statistic <- (x + 0.5 - n / 2) / sqrt(n / 4)
   }
 
-  # Step 5: Determine whether to reject H0 using standard normal critical values
+  # Get name of column in Table A.7 based on value of alpha and whether it is a one- or two-tailed test
+
+  # This is the case of looking up critical value in the table
   if (n <= 25) {
     if (alt %in% c("left", "less", "right", "greater")) {
       alpha_vector_name <-
@@ -87,37 +92,44 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
         paste("two.alpha_", formatC(alpha, format = "f", digits = 3), sep = "")
     }
 
-    # Use the selected alpha_vector_name to get the critical value
+    # Use the name of the column in Table A.7 to get the critical value corresponding to n
     critical_value <-
       table_data[table_data$n == n, alpha_vector_name]
 
     # Determine whether test statistic <= critical value for small sample sizes
     reject_null <- test_statistic <= as.numeric(critical_value)
 
-  } else {
+  }
+
+  # This is the case of calculating critical value from standard normal
+  else {
     if (alt %in% c("left", "less")) {
       critical_value <- qnorm(alpha)
       reject_null <- test_statistic <= critical_value
     } else if (alt %in% c("right", "greater")) {
       critical_value <- qnorm(1 - alpha)
       reject_null <- test_statistic >= critical_value
-    } else {  # Two-tailed test
+    } else {
+      # Two-tailed test
       critical_value_low <- -qnorm(1 - alpha / 2)
       critical_value_high <- qnorm(1 - alpha / 2)
-      reject_null <- test_statistic <= critical_value_low || test_statistic >= critical_value_high
+      reject_null <-
+        test_statistic <= critical_value_low ||
+        test_statistic >= critical_value_high
       critical_value <- c(critical_value_low, critical_value_high)
     }
   }
 
 
   # Print the results in a user-friendly manner
+
   cat(
     "Null Hypothesis:",
     null_hypothesis,
     "\nAlternate Hypothesis:",
     alternate_hypothesis,
     "\nSignificance Level:",
-    round(significance_level, 5),
+    round(sig_level, 5),
     "\nTest Statistic:",
     round(test_statistic, 5),
     "\nCritical Value:",
