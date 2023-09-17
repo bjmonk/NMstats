@@ -4,12 +4,12 @@
 #'
 #' @param sample1 A numeric vector representing the first sample data.
 #' @param sample2 A numeric vector representing the second sample data.
-#' @param alpha The significance level for the hypothesis test (between 0 and 1, exclusive).
+#' @param alpha The significance level for the hypothesis test. Allowed values are 0.10, 0.05, 0.02, and 0.01.
 #'
 #' @details
 #' The Signed Rank Test is a nonparametric test that assesses whether there is a significant difference between the medians of two paired samples. The null hypothesis states that the median difference is zero, while the alternate hypothesis suggests a non-zero median difference.
 #'
-#' The function calculates the test statistic based on the absolute values of the signed rank differences between paired observations. It then compares the test statistic to critical values obtained from Table A.8 for different significance levels and sample sizes.
+#' The function calculates the test statistic based on the absolute values of the signed rank differences between paired observations. It then compares the test statistic to critical values.
 #'
 #' If the test statistic falls within the critical region, the function will reject the null hypothesis, indicating a significant difference between the medians.
 #'
