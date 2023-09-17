@@ -813,7 +813,75 @@ data <- c(149, 144, 218, 153, 134, 152, 148, 144, 178, 107, 199, 135, 171, 110, 
 # Perform the test
 Sign_Test(data, m0 = 170, alpha = 0.01, alt = "less")
 ```
+<!-- DESCRIPTION OF Rank Sum Test FUNCTION -->
+## Rank_Sum_Test
+
+The `Rank_Sum_Test` function performs a nonparametric test for comparing the medians of two populations. The test requires that the populations have approximately the same shape, so the test is sometimes described as a test to determine whether two populations differ. 
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `Rank_Sum_Test(sample1, sample2, alpha, alt)` where `sample1` and `sample2` are numeric vectors of the sample data, `alpha` is the significance level, `alt` is the form of the alternate hypothesis.
+
+`alt` is a character string with choices "left", "right", or "two". The choices "less", "greater", or "two.sided" are also accepted.
 
 
+<p>&nbsp;</p>
 
+**Return**
+
+The function will print detailed output including the null and alternate hypotheses, significance level, test statistic, p-value, and test result. 
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+
+Decide whether there is a difference bewteen the median scores for two samples at the $\alpha = 0.05$ level of significance.
+
+```{r}
+# Define sample data
+sample_1 <- c(78, 82, 83, 87, 75, 63, 78, 60, 94, 62, 98, 90, 97, 81)
+sample_2 <- c(73, 72, 92, 100, 74, 90, 64, 84, 77, 89, 70, 64)
+
+# Perform the test
+Rank_Sum_Test(sample_1, sample_2, alpha = 0.05, alt = "two")
+```
+
+<!-- DESCRIPTION OF Signed Rank Test FUNCTION -->
+## Signed_Rank_Test
+
+The `Signed_Rank_Test` function performs the nonparametric Signed Rank Test for testing whether there is a difference between the medians of two populations, when the data are in the form of paired samples.
+
+
+<p>&nbsp;</p>
+
+**Usage**
+
+The format is `Signed_Rank_Test(sample1, sample2, alpha)` where `sample1` and `sample2` are numeric vectors of the sample data, and `alpha` is the significance level. Choices for alpha include 0.01, 0.02, 0.05, 0.10.
+
+<p>&nbsp;</p>
+
+**Return**
+
+The function will print detailed output including the null and alternate hypotheses, significance level, test statistic, critical value, and test result. 
+
+<p>&nbsp;</p>
+
+**Examples**
+
+<span class="xname">
+
+Decide whether there is a difference bewteen the median scores for two samples at the $\alpha = 0.05$ level of significance.
+
+```{r}
+# Define sample data
+sample_1 <- c(283, 299, 274, 284, 248, 275, 293, 277)
+sample_2 <- c(290, 281, 262, 287, 253, 287, 267, 271)
+
+# Perform the test
+Signed_Rank_Test(sample_1, sample_2, alpha = 0.05)
+```
 
