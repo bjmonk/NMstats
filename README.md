@@ -74,7 +74,14 @@ The `Two_Samp_T_Test` function performs a hypothesis test about the difference b
 ### `Two_Prop_Int`
 The `Two_Prop_Int` function calculates the confidence interval for the difference between two population proportions (`p_1 - p_2`).
 
+### `Sign_Test`
+The `Sign_Test` function performs a one-sample Sign Test for a population median when the population distribution is not necessarily normal.
 
+### `Rank_Sum_Test`
+The `Sign_Test` function performs a nonparametric test for comparing the medians of two populations. The test requires that the populations have approximately the same shape, so the test is sometimes described as a test to determine whether two populations differ.
+
+### `Signed_Rank_Test`
+The `Sign_Test` function performs the nonparametric Signed Rank Test for testing whether there is a difference between the medians of two populations, when the data are in the form of paired samples.
 
 ## Examples
 
