@@ -1,6 +1,6 @@
 #' Signed Rank Test for Testing a Median Difference
 #'
-#' This function performs the nonparametric Signed Rank Test for testing whether there is a difference between the medians of two populations.
+#' This function performs the nonparametric Signed Rank Test for testing whether there is a difference between the medians of two populations, when the data are in the form of paired samples.
 #'
 #' @param sample1 A numeric vector representing the first sample data.
 #' @param sample2 A numeric vector representing the second sample data.

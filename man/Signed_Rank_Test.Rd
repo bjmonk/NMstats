@@ -14,7 +14,7 @@ Signed_Rank_Test(sample1, sample2, alpha)
 \item{alpha}{The significance level for the hypothesis test (between 0 and 1, exclusive).}
 }
 \description{
-This function performs the nonparametric Signed Rank Test for testing whether there is a difference between the medians of two populations.
+This function performs the nonparametric Signed Rank Test for testing whether there is a difference between the medians of two populations, when the data are in the form of paired samples.
 }
 \details{
 The Signed Rank Test is a nonparametric test that assesses whether there is a significant difference between the medians of two paired samples. The null hypothesis states that the median difference is zero, while the alternate hypothesis suggests a non-zero median difference.
