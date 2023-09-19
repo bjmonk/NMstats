@@ -11,9 +11,14 @@
 #' @export
 
 sd.p <- function(x) {
+  # Check if there is only one number in the population
+  if (length(x) == 1) {
+    return(0)
+  }
+
   # Calculate the population standard deviation
-  result <- sqrt(var(x)*((length(x) - 1) / length(x) ))
+  result <- sqrt(var(x) * ((length(x) - 1) / length(x)))
 
   # Return the result
   return(result)
-  }
+}

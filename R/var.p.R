@@ -11,9 +11,14 @@
 #' @export
 
 var.p <- function(x) {
+  # Check for population size of 1
+  if (length(x) == 1) {
+    return(0)
+  }
+
   # Calculate the population variance
-  result <- var(x)*((length(x) - 1) / length(x) )
+  result <- var(x) * ((length(x) - 1) / length(x))
 
   # Return the result
   return(result)
-  }
+}
