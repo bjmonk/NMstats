@@ -16,6 +16,11 @@ Rank_Sum_Test <- function(sample1, sample2, alpha, alt = "two.sided") {
   # Check that alternate is one of the allowed values
   alt <- match.arg(alt, choices = c("left", "right", "two", "less", "greater", "two.sided"))
 
+  if (!is.numeric(alpha) || alpha <= 0 || alpha >= 1) {
+    stop("Error: 'alpha' must be a numeric value between 0 and 1 (exclusive)")
+  }
+
+
   # Map alternate names
   if (alt == "less") alt <- "left"
   if (alt == "greater") alt <- "right"
