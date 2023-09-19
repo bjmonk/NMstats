@@ -29,11 +29,7 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
   table_data$one.alpha_0.025 <- table_data$two.alpha_0.050
   table_data$one.alpha_0.050 <- table_data$two.alpha_0.100
 
-
-
-
   # Error check input values
-
   if (!alt %in% c("left", "less", "right", "greater", "two", "two.sided")) {
     stop(
       "Error: 'alt' must be one of 'left', 'right', 'two.sided', 'less', 'greater', or 'two'"
@@ -54,7 +50,7 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
     stop("Error: For two-tailed tests, 'alpha' must be one of 0.01, 0.02, 0.05, or 0.1")
   }
 
-  # Define  null and alternate hypotheses
+  # Define null and alternate hypotheses
   null_hypothesis <- paste("H0: m =", m0)
   if (alt %in% c("left", "less")) {
     alternate_hypothesis <- paste("H1: m <", m0)
@@ -80,29 +76,32 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
     test_statistic <- (x + 0.5 - n / 2) / sqrt(n / 4)
   }
 
-  # Get name of column in Table A.7 based on value of alpha and whether it is a one- or two-tailed test
-
   # This is the case of looking up critical value in the table
   if (n <= 25) {
     if (alt %in% c("left", "less", "right", "greater")) {
-      alpha_vector_name <-
-        paste("one.alpha_", formatC(alpha, format = "f", digits = 3), sep = "")
+      alpha_vector_name <- paste("one.alpha_", formatC(alpha, format = "f", digits = 3), sep = "")
     } else {
-      alpha_vector_name <-
-        paste("two.alpha_", formatC(alpha, format = "f", digits = 3), sep = "")
+      alpha_vector_name <- paste("two.alpha_", formatC(alpha, format = "f", digits = 3), sep = "")
     }
 
     # Use the name of the column in Table A.7 to get the critical value corresponding to n
-    critical_value <-
-      table_data[table_data$n == n, alpha_vector_name]
+    critical_value <- table_data[table_data$n == n, alpha_vector_name]
 
-    # Determine whether test statistic <= critical value for small sample sizes
+    if (is.na(critical_value)) {
+      cat(
+        "Null Hypothesis:", null_hypothesis,
+        "\nAlternate Hypothesis:", alternate_hypothesis,
+        "\nSignificance Level:", round(sig_level, 5),
+        "\nTest Statistic:", round(test_statistic, 5),
+        "\nCritical Value: NA",
+        "\nResult: It is impossible for the test statistic to be in the critical region.",
+        "\n"
+      )
+      return(invisible(NULL))
+    }
+
     reject_null <- test_statistic <= as.numeric(critical_value)
-
-  }
-
-  # This is the case of calculating critical value from standard normal
-  else {
+  } else {
     if (alt %in% c("left", "less")) {
       critical_value <- qnorm(alpha)
       reject_null <- test_statistic <= critical_value
@@ -110,37 +109,24 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
       critical_value <- qnorm(1 - alpha)
       reject_null <- test_statistic >= critical_value
     } else {
-      # Two-tailed test
       critical_value_low <- -qnorm(1 - alpha / 2)
       critical_value_high <- qnorm(1 - alpha / 2)
-      reject_null <-
-        test_statistic <= critical_value_low ||
-        test_statistic >= critical_value_high
+      reject_null <- test_statistic <= critical_value_low || test_statistic >= critical_value_high
       critical_value <- c(critical_value_low, critical_value_high)
     }
   }
 
-
-  # Print the results in a user-friendly manner
-
   cat(
-    "Null Hypothesis:",
-    null_hypothesis,
-    "\nAlternate Hypothesis:",
-    alternate_hypothesis,
-    "\nSignificance Level:",
-    round(sig_level, 5),
-    "\nTest Statistic:",
-    round(test_statistic, 5),
-    "\nCritical Value:",
-    round(critical_value, 5),
-    "\nResult:",
-    ifelse(
+    "Null Hypothesis:", null_hypothesis,
+    "\nAlternate Hypothesis:", alternate_hypothesis,
+    "\nSignificance Level:", round(sig_level, 5),
+    "\nTest Statistic:", round(test_statistic, 5),
+    "\nCritical Value:", round(critical_value, 5),
+    "\nResult:", ifelse(
       reject_null,
       "Reject the Null Hypothesis",
       "Do Not Reject the Null Hypothesis"
     ),
     "\n"
   )
-
 }
