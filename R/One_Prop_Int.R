@@ -31,12 +31,12 @@ One_Prop_Int <- function(x, n, alpha = 0.05)
   }
 
   # Check if x is a non-negative integer
-  if (!is.integer(x) || x < 0) {
+  if (any(x %% 1 != 0) || x < 0) {
     stop("Error: The value of 'x' must be a non-negative integer.")
   }
 
   # Check if n is a positive integer
-  if (!is.integer(n) || n <= 0) {
+  if (any(n %% 1 != 0) || n <= 0) {
     stop("Error: Sample size 'n' must be a positive integer.")
   }
 
