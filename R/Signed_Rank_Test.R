@@ -17,8 +17,8 @@
 
 Signed_Rank_Test <- function(sample1, sample2, alpha) {
   # Check for valid alpha value
-  if (!is.numeric(alpha) || alpha <= 0 || alpha >= 1) {
-    stop("Error: 'alpha' must be a numeric value between 0 and 1.")
+  if (!alpha %in% c(0.10, 0.05, 0.02, 0.01)) {
+    stop("Error: 'alpha' must be either 0.10, 0.05, 0.02, or 0.01.")
   }
 
   # Check for equal sample sizes
@@ -185,8 +185,17 @@ Signed_Rank_Test <- function(sample1, sample2, alpha) {
   # Use the column name to get the critical value based on alpha and n
   critical_value <- Table_A8[Table_A8$n == n, alpha_vector_name]
 
-  # Determine whether test statistic <= critical value
-  reject_null <- !is.na(critical_value) && (S <= critical_value)
+  # Determine whether to reject the null hypothesis
+  if (is.na(critical_value)) {
+    reject_null_message <- "It is impossible for the test statistic to be in the critical region."
+  } else {
+    reject_null <- (S <= critical_value)
+    reject_null_message <- ifelse(
+      reject_null,
+      "Reject the Null Hypothesis",
+      "Do Not Reject the Null Hypothesis"
+    )
+  }
 
   # Print the results in a user-friendly manner
   cat(
@@ -201,11 +210,7 @@ Signed_Rank_Test <- function(sample1, sample2, alpha) {
     "\nCritical Value:",
     round(critical_value, 5),
     "\nResult:",
-    ifelse(
-      reject_null,
-      "Reject the Null Hypothesis",
-      "Do Not Reject the Null Hypothesis"
-    ),
+    reject_null_message,
     "\n"
   )
 }
