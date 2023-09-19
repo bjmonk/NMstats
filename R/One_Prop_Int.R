@@ -25,16 +25,18 @@
 
 One_Prop_Int <- function(x, n, alpha = 0.05)
 {
-  # Check constraints on alpha, x, and n
+  # Check constraints on alpha
   if (alpha <= 0 || alpha >= 1) {
     stop("Error: The value of alpha must be between 0 and 1.")
   }
 
-  if (floor(x) != x || x < 0) {
+  # Check if x is a non-negative integer
+  if (!is.integer(x) || x < 0) {
     stop("Error: The value of 'x' must be a non-negative integer.")
   }
 
-  if (floor(n) != n || n <= 0) {
+  # Check if n is a positive integer
+  if (!is.integer(n) || n <= 0) {
     stop("Error: Sample size 'n' must be a positive integer.")
   }
 
@@ -85,5 +87,4 @@ One_Prop_Int <- function(x, n, alpha = 0.05)
   )
 
   return(invisible(result))
-
 }

@@ -34,8 +34,12 @@ Two_Prop_Int <- function(x1, n1, x2, n2, alpha = 0.05)
     stop("All inputs x1, n1, x2, n2 must be numeric.")
   }
 
-  if (x1 < 0 || x2 < 0) {
-    stop("The number of successes (x1 and x2) must be non-negative.")
+  if (any(x1 < 0, x2 < 0, n1 < 0, n2 < 0)) {
+    stop("All inputs x1, n1, x2, n2 must be non-negative.")
+  }
+
+  if (!all(x1 %% 1 == 0, x2 %% 1 == 0, n1 %% 1 == 0, n2 %% 1 == 0)) {
+    stop("All inputs x1, n1, x2, n2 must be integers.")
   }
 
   if (n1 <= 0 || n2 <= 0) {
@@ -53,7 +57,6 @@ Two_Prop_Int <- function(x1, n1, x2, n2, alpha = 0.05)
   if (alpha <= 0 || alpha >= 1) {
     stop("The significance level (alpha) must be between 0 and 1.")
   }
-
 
   # Calculate confidence level
   conf_lev <- (1 - alpha) * 100
