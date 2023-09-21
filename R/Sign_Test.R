@@ -30,6 +30,10 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
   table_data$one.alpha_0.050 <- table_data$two.alpha_0.100
 
   # Error check input values
+  if (!is.numeric(alpha) || alpha <= 0 || alpha >= 1) {
+    stop("Error: 'alpha' must be a numeric value between 0 and 1 (exclusive)")
+  }
+
   if (!alt %in% c("left", "less", "right", "greater", "two", "two.sided")) {
     stop(
       "Error: 'alt' must be one of 'left', 'right', 'two.sided', 'less', 'greater', or 'two'"
@@ -40,15 +44,7 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
     stop("Error: 'sample' and 'm0' must be numeric")
   }
 
-  if (alt %in% c("left", "less", "right", "greater") &&
-      !alpha %in% c(0.005, 0.01, 0.025, 0.05)) {
-    stop("Error: For one-tailed tests, 'alpha' must be one of 0.005, 0.01, 0.025, or 0.05")
-  }
 
-  if (alt %in% c("two", "two.sided") &&
-      !alpha %in% c(0.01, 0.02, 0.05, 0.1)) {
-    stop("Error: For two-tailed tests, 'alpha' must be one of 0.01, 0.02, 0.05, or 0.1")
-  }
 
   # Define null and alternate hypotheses
   null_hypothesis <- paste("H0: m =", m0)
@@ -71,6 +67,15 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
 
   # Compute the test statistic based on whether n <= 25 or n > 25
   if (n <= 25) {
+    if (alt %in% c("left", "less", "right", "greater") &&
+        !alpha %in% c(0.005, 0.01, 0.025, 0.05)) {
+      stop("Error: When n (the total number of plus and minus signs) is no more than 25, for one-tailed tests, 'alpha' must be one of 0.005, 0.01, 0.025, or 0.05")
+    }
+
+    if (alt %in% c("two", "two.sided") &&
+        !alpha %in% c(0.01, 0.02, 0.05, 0.1)) {
+      stop("Error: When n (the total number of plus and minus signs) is no more than 25, for two-tailed tests, 'alpha' must be one of 0.01, 0.02, 0.05, or 0.1")
+    }
     test_statistic <- x
   } else {
     test_statistic <- (x + 0.5 - n / 2) / sqrt(n / 4)
@@ -94,7 +99,7 @@ Sign_Test <- function(sample, m0, alpha, alt = "two.sided")
         "\nSignificance Level:", round(sig_level, 5),
         "\nTest Statistic:", round(test_statistic, 5),
         "\nCritical Value: NA",
-        "\nResult: It is impossible for the test statistic to be in the critical region.",
+        "\nResult: It is impossible for the test statistic to be in the critical region. We do not reject the Null Hypothesis.",
         "\n"
       )
       return(invisible(NULL))
