@@ -26,6 +26,11 @@ Signed_Rank_Test <- function(sample1, sample2, alpha) {
     stop("Error: Sample sizes must be equal.")
   }
 
+  # Check that sample sizes are no more than 30
+  if (length(sample1) > 30) {
+    stop("Error: The Signed Rank Test requires n to be less than or equal to 30")
+  }
+
 
   # Define Table A.8 from Navidi/Monk text
   Table_A8 <- data.frame(
@@ -187,7 +192,7 @@ Signed_Rank_Test <- function(sample1, sample2, alpha) {
 
   # Determine whether to reject the null hypothesis
   if (is.na(critical_value)) {
-    reject_null_message <- "It is impossible for the test statistic to be in the critical region."
+    reject_null_message <- "It is impossible for the test statistic to be in the critical region. We do not reject the Null Hypothesis."
   } else {
     reject_null <- (S <= critical_value)
     reject_null_message <- ifelse(
