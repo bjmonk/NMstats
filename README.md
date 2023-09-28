@@ -41,7 +41,7 @@ The `perms` function calculates the number of ways to choose `r` items from a to
 ### `outlier_bounds` 
 The `outlier_bounds` function computes the lower and upper outlier boundaries of a dataset using the IQR method.
 
-### `data_rage`
+### `data_range`
 The `data_range` function computes the range of a data set.
 
 ### `rel_hist`
